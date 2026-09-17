@@ -1,0 +1,29 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Database
+backend/database.sqlite
+backend/database.sqlite-journal
+
+# Env
+.env
+backend/.env
+
+# Uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Build
+frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

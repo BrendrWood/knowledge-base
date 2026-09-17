@@ -1,0 +1,123 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a2332 0%, #2d3748 100%);
+  padding: 20px;
+}
+
+.login-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 36px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.login-title {
+  font-size: 22px;
+  color: #1a2332;
+  text-align: center;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: #718096;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.login-hint {
+  text-align: center;
+  color: #a0aec0;
+  font-size: 13px;
+  margin-bottom: 24px;
+  padding: 8px 12px;
+  background: #f7fafc;
+  border-radius: 8px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.login-field label {
+  font-size: 13px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.login-input {
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.login-error {
+  color: #fc8181;
+  font-size: 13px;
+  text-align: center;
+  padding: 8px;
+  background: #fff5f5;
+  border-radius: 6px;
+}
+
+.login-btn {
+  padding: 12px;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-top: 8px;
+}
+
+.login-btn:hover:not(:disabled) {
+  background: #3182ce;
+}
+
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-footer {
+  text-align: center;
+  color: #a0aec0;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.login-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 16px;
+  color: #a0aec0;
+}

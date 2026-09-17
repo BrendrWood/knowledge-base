@@ -1,0 +1,231 @@
+.share-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e2e8f0 100%);
+  padding: 20px;
+}
+
+.share-card {
+  background: white;
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.share-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.share-header h1 {
+  font-size: 28px;
+  color: #1a2332;
+  margin-bottom: 8px;
+}
+
+.share-subtitle {
+  color: #718096;
+  font-size: 16px;
+}
+
+.share-expires {
+  text-align: center;
+  color: #ecc94b;
+  font-size: 14px;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  background: #fffbeb;
+  border-radius: 8px;
+}
+
+.share-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.share-code-input {
+  display: flex;
+  justify-content: center;
+}
+
+.share-input {
+  width: 200px;
+  padding: 16px 20px;
+  font-size: 32px;
+  text-align: center;
+  letter-spacing: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: border-color 0.2s;
+}
+
+.share-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.share-error {
+  color: #fc8181;
+  text-align: center;
+  font-size: 14px;
+  margin: 0;
+}
+
+.share-btn {
+  padding: 14px 32px;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.share-btn:hover {
+  background: #3182ce;
+  transform: translateY(-2px);
+}
+
+.share-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- ПРОСМОТР СТАТЬИ --- */
+.share-article-container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.share-article-header {
+  background: white;
+  border-radius: 16px;
+  padding: 32px 40px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.share-article-header h1 {
+  font-size: 32px;
+  color: #1a2332;
+  margin-bottom: 12px;
+}
+
+.share-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.share-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.share-badge.web {
+  background: #ebf8ff;
+  color: #3182ce;
+}
+
+.share-badge.mobile {
+  background: #faf5ff;
+  color: #805ad5;
+}
+
+.share-expires-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  background: #fffbeb;
+  color: #d69e2e;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.share-time-left {
+  margin-top: 8px;
+  padding: 6px 14px;
+  background: #fffbeb;
+  border-radius: 8px;
+  color: #d69e2e;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.share-time-left strong {
+  font-size: 16px;
+}
+
+.share-article-body {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  min-height: 300px;
+}
+
+.share-article-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.share-article-body p {
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* --- МОБИЛЬНАЯ ВЕРСИЯ --- */
+.share-mobile-frame {
+  max-width: 480px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.share-mobile-content {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.share-mobile-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* --- КАРТОЧКА ОШИБКИ --- */
+.share-error-card {
+  text-align: center;
+}
+
+.share-error-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.share-error-card h2 {
+  color: #1a2332;
+  margin-bottom: 8px;
+}
+
+.share-error-hint {
+  color: #a0aec0;
+  font-size: 14px;
+  margin-top: 8px;
+}

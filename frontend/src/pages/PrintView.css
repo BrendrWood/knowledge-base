@@ -1,0 +1,232 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.print-view {
+  background: #f5f7fa;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.print-loading,
+.print-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 16px;
+  color: #a0aec0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.print-error {
+  color: #fc8181;
+}
+
+/* --- КНОПКИ (не печатаются) --- */
+.print-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+  background: white;
+  padding: 8px 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.print-close-btn,
+.print-again-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.print-close-btn {
+  background: #edf2f7;
+  color: #4a5568;
+}
+
+.print-close-btn:hover {
+  background: #e2e8f0;
+}
+
+.print-again-btn {
+  background: #4299e1;
+  color: white;
+}
+
+.print-again-btn:hover {
+  background: #3182ce;
+}
+
+.print-mode-info {
+  font-size: 12px;
+  color: #a0aec0;
+  padding-left: 12px;
+  border-left: 1px solid #e2e8f0;
+}
+
+/* --- ПЕЧАТАЕМЫЙ КОНТЕНТ --- */
+.print-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 60px 80px;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  min-height: calc(100vh - 40px);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1a2332;
+}
+
+.print-content.mobile {
+  max-width: 420px;
+  padding: 40px 30px;
+}
+
+.print-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.print-content.mobile .print-title {
+  font-size: 24px;
+}
+
+.print-meta {
+  font-size: 13px;
+  color: #a0aec0;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #edf2f7;
+  margin-bottom: 32px;
+}
+
+.print-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #2d3748;
+}
+
+.print-content.mobile .print-body {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.print-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 8px 0;
+}
+
+.print-body p {
+  margin-bottom: 14px;
+}
+
+.print-body h1,
+.print-body h2,
+.print-body h3 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: #1a2332;
+}
+
+.print-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.print-body table td,
+.print-body table th {
+  border: 1px solid #e2e8f0;
+  padding: 8px 12px;
+}
+
+.print-body ul,
+.print-body ol {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+.print-body li {
+  margin-bottom: 6px;
+}
+
+/* --- СТИЛИ ДЛЯ ПЕЧАТИ --- */
+@media print {
+  @page {
+    margin: 15mm;
+    size: A4;
+  }
+
+  body {
+    background: white;
+  }
+
+  .print-view {
+    background: white;
+    padding: 0;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-content {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .print-content.mobile {
+    max-width: 100%;
+  }
+
+  .print-body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .print-title {
+    font-size: 22pt;
+  }
+
+  /* Разрыв страницы перед большими элементами */
+  .print-body h1,
+  .print-body h2 {
+    page-break-after: avoid;
+  }
+
+  .print-body img {
+    page-break-inside: avoid;
+    max-width: 100%;
+  }
+
+  .print-body table {
+    page-break-inside: avoid;
+  }
+
+  /* Скрываем URL и другие артефакты браузера */
+  a[href]::after {
+    content: "";
+  }
+}
