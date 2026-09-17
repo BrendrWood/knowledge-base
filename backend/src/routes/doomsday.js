@@ -28,27 +28,26 @@ const destroyEverything = async () => {
   try {
     console.log('💀 ЗАПУЩЕН ПРОТОКОЛ СУДНОГО ДНЯ!');
 
-    await sequelize.query('PRAGMA foreign_keys = OFF');
-    console.log('💀 Foreign keys отключены');
+    const dialect = process.env.DB_DIALECT || 'sqlite';
 
-    await sequelize.query('DELETE FROM SharedLinks');
-    console.log('💀 SharedLinks очищены');
-
-    await sequelize.query('DELETE FROM Articles');
-    console.log('💀 Articles очищены');
-
-    await sequelize.query('DELETE FROM DoomsdayVotes');
-    console.log('💀 DoomsdayVotes очищены');
-
-    try {
-      await sequelize.query("DELETE FROM sqlite_sequence WHERE name IN ('Articles', 'SharedLinks', 'DoomsdayVotes')");
-    } catch (e) {
-      // Таблица может отсутствовать
+    if (dialect === 'postgres') {
+      // PostgreSQL: используем TRUNCATE CASCADE
+      await sequelize.query('TRUNCATE TABLE "SharedLinks", "Articles", "DoomsdayVotes" RESTART IDENTITY CASCADE');
+      console.log('💀 PostgreSQL: таблицы очищены через TRUNCATE CASCADE');
+    } else {
+      // SQLite: отключаем foreign keys и удаляем
+      await sequelize.query('PRAGMA foreign_keys = OFF');
+      await sequelize.query('DELETE FROM SharedLinks');
+      await sequelize.query('DELETE FROM Articles');
+      await sequelize.query('DELETE FROM DoomsdayVotes');
+      try {
+        await sequelize.query("DELETE FROM sqlite_sequence WHERE name IN ('Articles', 'SharedLinks', 'DoomsdayVotes')");
+      } catch (e) {}
+      await sequelize.query('PRAGMA foreign_keys = ON');
+      console.log('💀 SQLite: таблицы очищены');
     }
 
-    await sequelize.query('PRAGMA foreign_keys = ON');
-    console.log('💀 Foreign keys включены');
-
+    // Удаляем картинки
     const uploadsDir = path.join(__dirname, '../../uploads');
     console.log(`💀 Папка uploads: ${uploadsDir}`);
     
@@ -74,10 +73,6 @@ const destroyEverything = async () => {
     console.log('💀 СУДНЫЙ ДЕНЬ ЗАВЕРШЁН. База знаний уничтожена.');
     return true;
   } catch (error) {
-    try {
-      await sequelize.query('PRAGMA foreign_keys = ON');
-    } catch (e) {}
-    
     console.error('❌ Ошибка уничтожения:', error);
     console.error('❌ Стек:', error.stack);
     return false;
