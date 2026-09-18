@@ -290,7 +290,8 @@ function App() {
   };
 
   const copyArticleLink = (articleId) => {
-    const link = `${window.location.origin}/article/${articleId}`;
+    const basePath = import.meta.env.PROD ? '/base' : '';
+    const link = `${window.location.origin}${basePath}/article/${articleId}`;
     navigator.clipboard.writeText(link);
     setCopiedArticleId(articleId);
     setTimeout(() => setCopiedArticleId(null), 1500);
@@ -602,7 +603,10 @@ function App() {
                     </button>
                     <button 
                       className="btn-print-pdf"
-                      onClick={() => window.open(`/print/${selectedArticle.id}?mode=web`, '_blank')}
+                      onClick={() => {
+                        const basePath = import.meta.env.PROD ? '/base' : '';
+                        window.open(`${basePath}/print/${selectedArticle.id}?mode=web`, '_blank');
+                      }}
                       title="Скачать PDF"
                     >
                       📄 PDF

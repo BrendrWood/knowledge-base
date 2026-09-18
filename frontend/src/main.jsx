@@ -22,7 +22,7 @@ function ProtectedRoute({ children }) {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/base">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/share/:slug" element={<ShareView />} />
