@@ -8,6 +8,10 @@ function SharedLinksTable({ articleId }) {
   const [isOpen, setIsOpen] = useState(false);
   const [copiedId, setCopiedId] = useState(null);
 
+  // Базовый путь для ссылок: /base в продакшене, пусто локально
+  const basePath = import.meta.env.PROD ? '/base' : '';
+  const shareBaseUrl = `${window.location.origin}${basePath}`;
+
   useEffect(() => {
     if (articleId) {
       loadLinks();
@@ -36,7 +40,6 @@ function SharedLinksTable({ articleId }) {
     }
   };
 
-  // Копирование одной строки
   const copyToClipboard = (text, event) => {
     navigator.clipboard.writeText(text);
     const btn = event.currentTarget;
@@ -45,12 +48,10 @@ function SharedLinksTable({ articleId }) {
     setTimeout(() => { btn.textContent = originalText; }, 1500);
   };
 
-  // Копирование ссылки + кода вместе
   const copyFull = (link, event) => {
-    const fullText = `🔗 Ссылка: ${window.location.origin}/share/${link.slug}\n🔑 Код доступа: ${link.code}`;
+    const fullText = `🔗 Ссылка: ${shareBaseUrl}/share/${link.slug}\n🔑 Код доступа: ${link.code}`;
     navigator.clipboard.writeText(fullText);
     
-    // Показываем визуальный отклик
     const btn = event.currentTarget;
     const originalText = btn.textContent;
     btn.textContent = '✓ Скопировано';
@@ -92,28 +93,28 @@ function SharedLinksTable({ articleId }) {
                     {link.mode === 'web' ? 'ПК' : 'Моб'}
                   </span>
                   <span className="link-url">
-                    {`${window.location.origin}/share/${link.slug}`}
+                    {`${shareBaseUrl}/share/${link.slug}`}
                   </span>
                   <button 
-                    onClick={(e) => copyToClipboard(`${window.location.origin}/share/${link.slug}`, e)}
+                    onClick={(e) => copyToClipboard(`${shareBaseUrl}/share/${link.slug}`, e)}
                     className="link-copy-btn"
                     title="Копировать ссылку"
-      >
-        ⧉
+                  >
+                    ⧉
                   </button>
                   <span className="link-code">{link.code}</span>
                   <button 
-                   onClick={(e) => copyToClipboard(link.code, e)}
-                   className="link-copy-btn"
-                   title="Копировать код"
-      >
-        ⧉
+                    onClick={(e) => copyToClipboard(link.code, e)}
+                    className="link-copy-btn"
+                    title="Копировать код"
+                  >
+                    ⧉
                   </button>
                   <button 
                     onClick={(e) => copyFull(link, e)}
                     className={`link-copy-full-btn ${copiedId === link.id ? 'copied' : ''}`}
                     title="Скопировать ссылку и код одним сообщением"
-      >
+                  >
                     Копировать всё
                   </button>
                   <span className="link-expires">
