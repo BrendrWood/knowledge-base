@@ -333,6 +333,8 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   display: flex;
   flex-direction: column;
+  max-height: calc(100vh - 120px);
+  overflow: hidden;
 }
 
 .web-editor h3, .mobile-preview h3 {
@@ -455,6 +457,8 @@
   border-radius: 10px;
   padding: 8px;
   position: relative;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .mobile-content {
@@ -467,6 +471,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   overflow-y: auto;
+  min-height: 0;
 }
 
 .editor-actions {

@@ -206,7 +206,12 @@ function ArticleEditor({
       const formData = new FormData();
       formData.append('image', blobInfo.blob(), blobInfo.filename());
 
-      fetch('http://localhost:5000/api/upload', {
+      // В продакшене — через Nginx (/base/api/upload), локально — напрямую на бэкенд
+      const uploadUrl = import.meta.env.PROD
+        ? '/base/api/upload'
+        : 'http://localhost:5000/api/upload';
+
+      fetch(uploadUrl, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
