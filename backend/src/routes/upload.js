@@ -42,8 +42,9 @@ router.post('/', upload.single('image'), (req, res) => {
       return res.status(400).json({ error: 'Файл не загружен' });
     }
     
-    // Возвращаем URL для доступа к файлу
-    const imageUrl = `http://localhost:${process.env.PORT || 5000}/uploads/${req.file.filename}`;
+    // На проде (NODE_ENV=production) — /base/uploads/..., локально — /uploads/...
+    const basePath = process.env.NODE_ENV === 'production' ? '/base' : '';
+    const imageUrl = `${basePath}/uploads/${req.file.filename}`;
     res.json({ location: imageUrl });
   } catch (error) {
     console.error('Ошибка загрузки:', error);
